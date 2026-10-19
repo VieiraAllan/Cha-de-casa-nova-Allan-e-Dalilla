@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Állan &amp; Dalilla</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .admin-wrap{max-width:960px;margin:0 auto;padding:48px 24px 80px;}
+  .admin-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:32px;}
+  .stat{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:16px 18px;}
+  .stat .num{font-size:26px;font-weight:600;}
+  .stat .lbl{font-size:13px;color:#77705f;margin-top:2px;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,0.08);}
+  th,td{padding:12px 14px;text-align:left;font-size:13.5px;border-bottom:1px solid rgba(0,0,0,0.08);}
+  th{color:#77705f;font-weight:600;background:#F1E9DB;font-size:12.5px;}
+  tr:last-child td{border-bottom:none;}
+  select.status-sel{padding:6px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.15);font-size:13px;}
+  .login-box{max-width:320px;margin:120px auto;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:18px;padding:32px;text-align:center;}
+  .login-box input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(0,0,0,0.15);margin:10px 0;font-size:14px;box-sizing:border-box;}
+  .erro-campo{color:#A32D2D;font-size:12.5px;min-height:16px;margin:4px 0 8px;}
+  .btn-admin{padding:10px 20px;border-radius:100px;border:none;background:#C97B5F;color:#fff;font-size:14px;cursor:pointer;}
+  .btn-admin.secundario{background:transparent;color:#96543D;border:1px solid #C97B5F;}
+  .toggle-form{margin-bottom:20px;}
+  .form-presente{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:14px;padding:20px;margin-bottom:24px;display:none;gap:10px;}
+  .form-presente.aberto{display:grid;grid-template-columns:1fr 1fr;}
+  .form-presente input, .form-presente textarea{padding:10px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.15);font-size:14px;font-family:inherit;}
+  .form-presente .full{grid-column:1 / -1;}
+  #erro-geral{color:#A32D2D;font-size:13px;margin:10px 0;}
+</style>
+</head>
+<body style="background:#F7F1E8;">
+
+<div id="tela-login">
+  <div class="login-box">
+    <h3 style="margin:0 0 4px;">Painel administrativo</h3>
+    <p style="font-size:13px;color:#77705f;margin:0 0 8px;">Chá de casa nova — Állan &amp; Dalilla</p>
+    <input type="email" id="login-email" placeholder="E-mail">
+    <input type="password" id="login-senha" placeholder="Senha">
+    <p class="erro-campo" id="erro-login"></p>
+    <button class="btn-admin" style="width:100%;" onclick="fazerLogin()">Entrar</button>
+  </div>
+</div>
+
+<div id="tela-painel" style="display:none;">
+  <div class="admin-wrap">
+    <div class="admin-top">
+      <h2 style="margin:0;">Painel de presentes</h2>
+      <button class="btn-admin secundario" onclick="fazerLogout()">Sair</button>
+    </div>
+
+    <div class="stat-row" id="stats"></div>
+
+    <div class="toggle-form">
+      <button class="btn-admin" onclick="abrirFormNovo()">+ Novo presente</button>
+    </div>
+
+    <div class="form-presente" id="form-novo">
+      <h3 class="full" id="titulo-form" style="margin:0 0 4px;">Novo presente</h3>
+      <input type="text" id="f-nome" placeholder="Nome do presente" class="full">
+      <textarea id="f-descricao" placeholder="Descrição / motivo" class="full" rows="2"></textarea>
+      <input type="text" id="f-categoria" placeholder="Categoria (ex: Cozinha)">
+      <input type="number" id="f-preco" placeholder="Preço (ex: 199.90)" step="0.01">
+      <input type="text" id="f-imagem" placeholder="URL da imagem (opcional)">
+      <input type="text" id="f-link" placeholder="Link Shopee/Mercado Livre">
+      <p class="erro-campo full" id="erro-form"></p>
+      <div class="full" style="display:flex;gap:10px;">
+        <button class="btn-admin" id="btn-salvar-form" onclick="salvarPresente()">Salvar presente</button>
+        <button class="btn-admin secundario" onclick="toggleFormNovo()">Cancelar</button>
+      </div>
+    </div>
+
+    <p id="erro-geral"></p>
+
+    <table>
+      <thead>
+        <tr><th>Presente</th><th>Valor</th><th>Reservado por</th><th>Status</th><th></th></tr>
+      </thead>
+      <tbody id="tbody-presentes"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+</body>
+</html>

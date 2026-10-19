@@ -1,0 +1,2 @@
+[functions.reservar]
+verify_jwt = false

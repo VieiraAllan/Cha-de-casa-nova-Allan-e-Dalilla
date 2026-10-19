@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Állan e Dalilla" />
+    <link rel="manifest" href="/site.webmanifest" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FAF7F2">
+  <meta name="description" content="Chá de Casa Nova — Állan & Dalilla">
+  <title>Állan & Dalilla — Nosso primeiro lar juntos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__ornament" aria-hidden="true">♡</div>
+    <p class="eyebrow">Chá de Casa Nova</p>
+    <h1>Állan <span>&</span> Dalilla</h1>
+    <p class="hero__subtitle">Nosso primeiro lar juntos</p>
+    <p class="hero__text">Uma nova fase, novos sonhos e um cantinho para chamar de nosso. Queremos celebrar esse começo ao lado de pessoas especiais como você.</p>
+    <a class="button button--primary" href="#evento">Ver detalhes</a>
+  </header>
+
+  <main>
+    <section class="section event" id="evento">
+      <p class="eyebrow">Vamos comemorar</p>
+      <h2>Um dia especial para nós</h2>
+      <div class="event-grid">
+        <article class="info-card"><span>♡</span><strong>Data</strong><p>12 de outubro de 2026</p></article>
+        <article class="info-card"><span>◷</span><strong>Horário</strong><p>16h00</p></article>
+        <article class="info-card"><span>⌖</span><strong>Local</strong><p>R. Desembargador José Pellini, 03</p><a href="https://maps.app.goo.gl/4CqoKRLouYHr5iMN8" target="_blank" class="text-link">Abrir localização →</a></article>
+      </div>
+    </section>
+
+    <section class="section story">
+      <div class="story__box">
+        <p class="eyebrow">Nossa nova fase</p>
+        <h2>Começar uma casa é começar uma história.</h2>
+        <p>Estamos construindo nosso primeiro lar juntos e queremos guardar esse momento com muito carinho. Mais do que coisas para a casa, estamos reunindo pequenos detalhes que vão fazer parte da nossa história.</p>
+      </div>
+    </section>
+
+    <section class="section gifts" id="presentes">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Se quiser nos presentear</p>
+          <h2>Lista de presentes</h2>
+          <p>Escolhemos alguns itens que vão nos ajudar a montar nosso cantinho. Você pode conhecer o produto antes de reservar.</p>
+        </div>
+        <div class="gift-count" id="gift-count">—</div>
+      </div>
+
+      <div class="controls" aria-label="Filtros da lista">
+        <label class="check-control">
+          <input type="checkbox" id="available-only">
+          <span>Apenas disponíveis</span>
+        </label>
+        <label class="select-control">
+          <span>Ordenar</span>
+          <select id="sort-select">
+            <option value="default">Padrão</option>
+            <option value="name-asc">Nome: A → Z</option>
+            <option value="name-desc">Nome: Z → A</option>
+            <option value="price-asc">Preço: menor → maior</option>
+            <option value="price-desc">Preço: maior → menor</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="gift-grid" id="gift-grid">
+        <div class="loading">Carregando presentes…</div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="closing__heart">♡</div>
+      <h2>Ter você conosco já é um presente.</h2>
+      <p>Esperamos celebrar esse novo capítulo ao lado de vocês.</p>
+      <p class="signature">Com carinho,<br><strong>Állan & Dalilla</strong></p>
+      <hr>
+      <a href="https://allanvieira.com" target="_blank" rel="noopener noreferrer">Desenvolvido por Állan Vieira</a>
+    </section>
+  </main>
+
+  <div class="modal" id="reserve-modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close" type="button" data-close-modal aria-label="Fechar">×</button>
+      <p class="eyebrow">Reservar presente</p>
+      <h2 id="modal-title">Quem vai dar este presente?</h2>
+      <p>Para identificarmos sua reserva, informe seu nome e sobrenome.</p>
+      <div class="selected-gift" id="selected-gift"></div>
+      <form id="reserve-form">
+        <label for="guest-name">Nome e sobrenome</label>
+        <input id="guest-name" name="guest_name" type="text" autocomplete="name" maxlength="120" placeholder="Nome e sobrenome" required>
+        <button class="button button--primary button--full" type="submit">Confirmar reserva</button>
+      </form>
+      <p class="form-message" id="form-message" role="status"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
